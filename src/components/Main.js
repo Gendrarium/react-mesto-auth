@@ -6,7 +6,7 @@ function Main(props) {
   const currentUser = React.useContext(CurrentUserContext);
 
   return (
-    <main className="main">
+    <>
       <section className="profile main__profile">
         <div className="profile__container">
           <button className="profile__edit-image" onClick={props.handleEditAvatarClick}>
@@ -26,7 +26,7 @@ function Main(props) {
         {props.cards.map((card)=> (
         <Card key={card._id} card={card} onCardLike={props.onCardLike} onCardClick={props.onCardClick} onCardDelete={props.onCardDelete}/>))}
       </section>
-    </main>
+      </>
   );
 }
 

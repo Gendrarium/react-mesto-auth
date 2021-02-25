@@ -1,5 +1,7 @@
 .edit-form__title {
-  margin: 34px 0 54px 36px;
+  margin: 34px 0 54px 0px;
+  max-width: 358px;
+  text-align: center;
   font-weight: 900;
   font-family: 'Inter', Arial, sans-serif;
   color: #000000;
@@ -9,8 +11,8 @@
 
 @media screen and (max-width: 599px) {
   .edit-form__title {
-    margin-left: 22px;
     font-size: 18px;
     line-height: 22px;
+    max-width: 244px;
   }
  }
