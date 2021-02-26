@@ -22,19 +22,31 @@ function EditProfilePopup(props) {
   }
 
   function handleSubmitForm(e) {
-  e.preventDefault();
+    e.preventDefault();
 
-  props.onUpdateUser({
-    name,
-    about: description,
-  });
+    props.onUpdateUser({
+      name,
+      about: description,
+    });
   }
 
   return (
-  <PopupWithForm name='redact' title='Редактировать профиль' buttonCaption='Сохранить' isOpen={props.isOpen ? 'edit-form_display-flex' : ''} onClose={props.onClose} onSubmit={handleSubmitForm}>
-    <PopupChildrenRedactProfile name={name} description={description} onChangeName={handleNameChange} onChangeDescription={handleDescriptionChange}/>
-  </PopupWithForm>
-    )
+    <PopupWithForm
+      name='redact'
+      title='Редактировать профиль'
+      buttonCaption='Сохранить'
+      isOpen={props.isOpen ? 'edit-form_display-flex' : ''}
+      onClose={props.onClose}
+      onSubmit={handleSubmitForm}
+    >
+      <PopupChildrenRedactProfile
+        name={name}
+        description={description}
+        onChangeName={handleNameChange}
+        onChangeDescription={handleDescriptionChange}
+      />
+    </PopupWithForm>
+  );
 }
 
 export default EditProfilePopup;

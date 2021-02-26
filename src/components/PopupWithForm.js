@@ -1,9 +1,9 @@
 function PopupWithForm(props) {
 
-  return(
+  return (
     <div className={`edit-form page__edit-form edit-form_button_${props.name} ${props.isOpen}`}   >
       <div className="edit-form__container">
-        <button className="edit-form__close-button" type="button" onClick={props.onClose}></button>
+        <button className="edit-form__close-button" type="button" onClick={props.onClose}/>
         <h2 className="edit-form__title">{props.title}</h2>
         <form onSubmit={props.onSubmit} className="edit-form__form" target="_self" name={props.name} method="get">
         {props.children}

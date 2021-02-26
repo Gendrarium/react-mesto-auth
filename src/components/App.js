@@ -27,13 +27,13 @@ function App() {
   const [cards, setCards] = React.useState([]);
   const [currentUser, setCurrentUser] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [isSucces, setIsSucces] = React.useState(false);
+  const [isSuccess, setIsSuccess] = React.useState(false);
   const [location, setLocation] = React.useState();
   const [email, setEmail] = React.useState('');
   const history = useHistory()
 
   function handleInfoTooltip(isOkey) {
-    isOkey ? setIsSucces(true) : setIsSucces(false);
+    isOkey ? setIsSuccess(true) : setIsSuccess(false);
     setIsInfoTooltipPopupOpen(true);
   }
 
@@ -46,25 +46,29 @@ function App() {
   function handleLogin() {
     setLoggedIn(true);
   }
-  function handleTokenCheck(){
-    if (localStorage.getItem('jwt')){
+
+  const handleTokenCheck = React.useCallback(() => {
+    if (localStorage.getItem('jwt')) {
     const jwt = localStorage.getItem('jwt');
-    auth.checkToken(jwt).then((res) => {
-      if (res){
-        setEmail(res.data.email);
+    auth.checkToken(jwt)
+      .then((res) => {
+        if (res) {
+          setEmail(res.data.email);
           setLoggedIn(true)
           history.push("/");
-      }
-    });
-  }
-  }
+        }
+      });
+    }
+  }, [history]);
+
   React.useEffect(()=> {
     handleTokenCheck();
-  }, [])
+  }, [handleTokenCheck]);
+
   function handleCardLike(card, isLiked) {
     const likeOrDis = !isLiked ? api.likeCard(card._id) : api.dislikeCard(card._id);
     likeOrDis
-    .then((newCard) => {
+      .then((newCard) => {
         const newCards = cards.map((c) => c._id === card._id ? newCard : c);
         setCards(newCards);
       })
@@ -72,7 +76,6 @@ function App() {
         console.log(err);
       })
   }
-
 
   function handleCardDelete(card) {
     api.deleteCard(card._id)
@@ -87,35 +90,35 @@ function App() {
 
   function handleUpdateUser(data) {
     api.editUserInfo(data)
-    .then((userData) =>{
-      setCurrentUser(userData);
-      closeAllPopups();
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+      .then((userData) =>{
+        setCurrentUser(userData);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   function handleUpdateAvatar(data) {
     api.editAvatar(data)
-    .then((userData) =>{
-      setCurrentUser(userData);
-      closeAllPopups();
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+      .then((userData) =>{
+        setCurrentUser(userData);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   function handleAddPlaceSubmit(data) {
     api.addCard(data)
-    .then((newCard) => {
-      setCards([newCard, ...cards]);
-      closeAllPopups();
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   function handleEditProfileClick() {
@@ -141,7 +144,7 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsCardFullPopupOpen(false);
     setIsInfoTooltipPopupOpen(false);
-    }
+  }
 
   React.useEffect(() =>{
     Promise.all([
@@ -163,20 +166,22 @@ function App() {
       loggedIn={loggedIn}
       location={location}
       handleLogout={handleLogout}
-      />
+    />
     <main className="main">
     <Switch>
       <Route path="/sign-up">
         <Register
           openNotice={handleInfoTooltip}
-          setLocation={setLocation}/>
+          setLocation={setLocation}
+        />
       </Route>
       <Route path="/sign-in">
         <Login
           openNotice={handleInfoTooltip}
           setLocation={setLocation}
           setAppEmail={setEmail}
-          handleLogin={handleLogin}/>
+          handleLogin={handleLogin}
+        />
       </Route>
       <ProtectedRoute
         component={Main}
@@ -189,21 +194,45 @@ function App() {
         onCardClick={handleCardClick}
         onCardLike={handleCardLike}
         onCardDelete={handleCardDelete}
-    />
+      />
     </Switch>
     </main>
       <Footer/>
-      {
-        loggedIn && <>
-      <EditProfilePopup onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}/>
-      <AddPlacePopup isOpen={isAddPlacePopupOpen}  onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit}/>
-      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar}/>
-      <PopupWithForm name='del' title='Вы уверены?' buttonCaption='Да'/>
-      <ImagePopup card={selectedCard} isOpen={isCardFullPopupOpen ? 'edit-form_display-flex' : ''} onClose={closeAllPopups}/>
-      </>
-      }
-      <InfoTooltip isSucces={isSucces} onClose={closeAllPopups} isOpen={isInfoTooltipPopupOpen ? 'edit-form_display-flex' : ''}/>
-  </CurrentUserContext.Provider>
+      { loggedIn && (
+        <>
+          <EditProfilePopup
+            onUpdateUser={handleUpdateUser}
+            isOpen={isEditProfilePopupOpen}
+            onClose={closeAllPopups}
+          />
+          <AddPlacePopup
+            isOpen={isAddPlacePopupOpen}
+            onClose={closeAllPopups}
+            onAddPlace={handleAddPlaceSubmit}
+          />
+          <EditAvatarPopup
+            isOpen={isEditAvatarPopupOpen}
+            onClose={closeAllPopups}
+            onUpdateAvatar={handleUpdateAvatar}
+          />
+          <PopupWithForm
+            name='del'
+            title='Вы уверены?'
+            buttonCaption='Да'
+          />
+          <ImagePopup
+            card={selectedCard}
+            isOpen={isCardFullPopupOpen ? 'edit-form_display-flex' : ''}
+            onClose={closeAllPopups}
+          />
+        </>
+      )}
+      <InfoTooltip
+        isSuccess={isSuccess}
+        onClose={closeAllPopups}
+        isOpen={isInfoTooltipPopupOpen ? 'edit-form_display-flex' : ''}
+      />
+    </CurrentUserContext.Provider>
   );
 }
 

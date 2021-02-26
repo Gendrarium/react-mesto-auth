@@ -16,6 +16,7 @@ function Register({setLocation, openNotice}) {
   function handlePasswordChange(e) {
     setPassword(e.target.value);
   }
+
   function handleSubmit(e) {
     e.preventDefault();
     if (!email || !password){
@@ -31,22 +32,23 @@ function Register({setLocation, openNotice}) {
           }
       });
   }
+
   React.useEffect(()=> {
     setLocation('/sign-up')
   },[setLocation]);
-return (
-  <AuthPage
-    email={email}
-    password={password}
-    handleEmailChange={handleEmailChange}
-    handlePasswordChange={handlePasswordChange}
-    title="Регистрация"
-    buttonTitle="Зарегистрироваться"
-    onSubmit={handleSubmit}
-    children={<Link className="auth__link" to="/sign-in">Уже зарегистрированы? Войти</Link>}
-  />
-);
 
+  return (
+    <AuthPage
+      email={email}
+      password={password}
+      handleEmailChange={handleEmailChange}
+      handlePasswordChange={handlePasswordChange}
+      title="Регистрация"
+      buttonTitle="Зарегистрироваться"
+      onSubmit={handleSubmit}
+      children={<Link className="auth__link" to="/sign-in">Уже зарегистрированы? Войти</Link>}
+    />
+  );
 }
 
 

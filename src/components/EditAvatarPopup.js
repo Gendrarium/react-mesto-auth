@@ -6,18 +6,25 @@ function EditAvatarPopup(props) {
   const inputRef = React.useRef();
 
   function handleSubmitForm(e) {
-  e.preventDefault();
+    e.preventDefault();
 
-  props.onUpdateAvatar({
-    avatar: inputRef.current.value
-  });
+    props.onUpdateAvatar({
+      avatar: inputRef.current.value
+    });
   }
 
   return (
-    <PopupWithForm name='avatar-edit' title='Обновить аватар' buttonCaption='Сохранить' isOpen={props.isOpen ? 'edit-form_display-flex' : ''} onClose={props.onClose} onSubmit={handleSubmitForm}>
+    <PopupWithForm
+      name='avatar-edit'
+      title='Обновить аватар'
+      buttonCaption='Сохранить'
+      isOpen={props.isOpen ? 'edit-form_display-flex' : ''}
+      onClose={props.onClose}
+      onSubmit={handleSubmitForm}
+    >
       <PopupChildrenRedactAvatar inputRef={inputRef}/>
     </PopupWithForm>
-    )
+  );
 }
 
 export default EditAvatarPopup;

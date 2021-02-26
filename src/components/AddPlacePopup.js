@@ -23,10 +23,22 @@ function AddPlacePopup(props) {
   }
 
   return (
-    <PopupWithForm onSubmit={handleSubmitForm} name='add' title='Новое место' buttonCaption='Создать' isOpen={props.isOpen ? 'edit-form_display-flex' : ''} onClose={props.onClose}>
-      <PopupChildrenAddCard  name={name} link={link} onChangeName={handleNameChange} onChangeLink={handleLinkChange}/>
+    <PopupWithForm
+      onSubmit={handleSubmitForm}
+      name='add'
+      title='Новое место'
+      buttonCaption='Создать'
+      isOpen={props.isOpen ? 'edit-form_display-flex' : ''}
+      onClose={props.onClose}
+    >
+      <PopupChildrenAddCard
+        name={name}
+        link={link}
+        onChangeName={handleNameChange}
+        onChangeLink={handleLinkChange}
+      />
     </PopupWithForm>
-    )
+  );
 }
 
 export default AddPlacePopup;

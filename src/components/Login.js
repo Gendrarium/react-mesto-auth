@@ -21,24 +21,25 @@ function Login({setLocation, handleLogin, setAppEmail, openNotice}) {
       return;
     }
     auth.authorize(password, email)
-    .then((data) => {
-      if (data.token){
-        setAppEmail(email);
-        setEmail('');
-        setPassword('');
-        handleLogin();
-        history.push('/');
-    }
-    })
-    .catch((err) => {
-      openNotice(false);
-      console.log(err)
-    });
+      .then((data) => {
+        if (data.token){
+          setAppEmail(email);
+          setEmail('');
+          setPassword('');
+          handleLogin();
+          history.push('/');
+      }
+      })
+      .catch((err) => {
+        openNotice(false);
+        console.log(err)
+      });
   }
 
   React.useEffect(()=> {
     setLocation('/sign-in');
   },[setLocation]);
+
   return (
     <AuthPage
       email={email}
@@ -49,7 +50,7 @@ function Login({setLocation, handleLogin, setAppEmail, openNotice}) {
       buttonTitle="Войти"
       onSubmit={handleSubmit}
     />
-  )
+  );
 }
 
 export default Login;
