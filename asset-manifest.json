@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "./static/css/main.7e87e2c3.chunk.css",
+    "main.js": "./static/js/main.cefdf6d7.chunk.js",
+    "main.js.map": "./static/js/main.cefdf6d7.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.04ddbf46.js",
+    "runtime-main.js.map": "./static/js/runtime-main.04ddbf46.js.map",
+    "static/js/2.7f835439.chunk.js": "./static/js/2.7f835439.chunk.js",
+    "static/js/2.7f835439.chunk.js.map": "./static/js/2.7f835439.chunk.js.map",
+    "static/js/3.c9064e9b.chunk.js": "./static/js/3.c9064e9b.chunk.js",
+    "static/js/3.c9064e9b.chunk.js.map": "./static/js/3.c9064e9b.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/main.7e87e2c3.chunk.css.map": "./static/css/main.7e87e2c3.chunk.css.map",
+    "static/js/2.7f835439.chunk.js.LICENSE.txt": "./static/js/2.7f835439.chunk.js.LICENSE.txt",
+    "static/media/index.css": "./static/media/profile-plus-and-edit-form-x.bed8c136.svg",
+    "static/media/auth-no.df8eddf6.svg": "./static/media/auth-no.df8eddf6.svg",
+    "static/media/auth-yes.1b6082f8.svg": "./static/media/auth-yes.1b6082f8.svg",
+    "static/media/header-logo.c2821b38.svg": "./static/media/header-logo.c2821b38.svg",
+    "static/media/header-phone-button.a46d5c1c.svg": "./static/media/header-phone-button.a46d5c1c.svg",
+    "static/media/header-phone-close-button.3c2485ff.svg": "./static/media/header-phone-close-button.3c2485ff.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.04ddbf46.js",
+    "static/js/2.7f835439.chunk.js",
+    "static/css/main.7e87e2c3.chunk.css",
+    "static/js/main.cefdf6d7.chunk.js"
+  ]
+}
