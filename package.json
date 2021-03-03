@@ -8,7 +8,7 @@
     "url" : "https://github.com/Gendrarium"
   },
   "description": "This is a project 'Mesto', with with added authentication",
-  "homepage": "https://github.com/Gendrarium/react-mesto-auth",
+  "homepage": ".",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
