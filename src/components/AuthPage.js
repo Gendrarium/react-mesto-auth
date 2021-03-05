@@ -3,6 +3,8 @@ import React from 'react';
 function AuthPage({
   email,
   password,
+  error,
+  isDisabled,
   handleEmailChange,
   handlePasswordChange,
   title,
@@ -33,6 +35,7 @@ function AuthPage({
           maxLength="40"
           required
         />
+        <span className="auth__error">{error.email}</span>
         <input
           className="auth__input"
           value={password}
@@ -45,7 +48,8 @@ function AuthPage({
           maxLength="200"
           required
         />
-        <button className="auth__button">{buttonTitle}</button>
+        <span className="auth__error">{error.password}</span>
+        <button disabled={isDisabled} className={`auth__button ${isDisabled && 'auth__button_disabled'}`}>{buttonTitle}</button>
       </form>
       {children}
     </section>

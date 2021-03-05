@@ -3,7 +3,7 @@ function PopupChildrenAddCard(props) {
   return (
     <>
       <input
-        className="edit-form__input edit-form__input_content_name"
+        className="popup__input popup__input_content_name"
         value={props.name}
         onChange={props.onChangeName}
         id="place-name"
@@ -14,9 +14,9 @@ function PopupChildrenAddCard(props) {
         maxLength="30"
         required
       />
-      <span id="place-name-error" className="edit-form__error"></span>
+      <span id="place-name-error" className="popup__error"></span>
       <input
-        className="edit-form__input edit-form__input_content_link"
+        className="popup__input popup__input_content_link"
         value={props.link}
         onChange={props.onChangeLink}
         id="user-link"
@@ -25,7 +25,7 @@ function PopupChildrenAddCard(props) {
         placeholder="Ссылка на картинку"
         required
       />
-      <span id="user-link-error" className="edit-form__error"></span>
+      <span id="user-link-error" className="popup__error"></span>
     </>
   );
 }

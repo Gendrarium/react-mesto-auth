@@ -6,14 +6,21 @@ import AuthPage from './AuthPage';
 function Login({setLocation, handleLogin, setAppEmail, openNotice}) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [error, setError] = React.useState({
+    email: '',
+    password: ''
+  })
+  const [isButtonDisabled, setIsButtonDisabled] = React.useState(true);
   const history = useHistory();
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
+    setError({...error, email: e.target.validationMessage});
   }
 
   function handlePasswordChange(e) {
     setPassword(e.target.value);
+    setError({...error, password: e.target.validationMessage});
   }
   function handleSubmit(e) {
     e.preventDefault();
@@ -40,9 +47,16 @@ function Login({setLocation, handleLogin, setAppEmail, openNotice}) {
     setLocation('/sign-in');
   },[setLocation]);
 
+  React.useEffect(()=> {
+  // Если ошибки пустые, а инпуты заполнены, кнопка активна (isDisabled=false)
+  error.email === '' && error.password === '' ? (email !== '' && password !== '' ? setIsButtonDisabled(false) : setIsButtonDisabled(true)) : setIsButtonDisabled(true);
+  }, [error, email, password]);
+  
   return (
     <AuthPage
       email={email}
+      error={error}
+      isDisabled={isButtonDisabled}
       password={password}
       handleEmailChange={handleEmailChange}
       handlePasswordChange={handlePasswordChange}

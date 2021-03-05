@@ -3,7 +3,7 @@ function PopupChildrenRedactProfile(props) {
   return (
     <>
       <input
-        className="edit-form__input edit-form__input_content_name"
+        className="popup__input popup__input_content_name"
         value={props.name}
         onChange={props.onChangeName}
         id="user-name"
@@ -13,9 +13,9 @@ function PopupChildrenRedactProfile(props) {
         maxLength="40"
         required
       />
-      <span id="user-name-error" className="edit-form__error"></span>
+      <span id="user-name-error" className="popup__error"></span>
       <input
-        className="edit-form__input edit-form__input_content_job"
+        className="popup__input popup__input_content_job"
         value={props.description}
         onChange={props.onChangeDescription}
         id="user-job"
@@ -25,7 +25,7 @@ function PopupChildrenRedactProfile(props) {
         maxLength="200"
         required
       />
-      <span id="user-job-error" className="edit-form__error"></span>
+      <span id="user-job-error" className="popup__error"></span>
     </>
   );
 }

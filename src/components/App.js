@@ -157,7 +157,8 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-      })}, []);
+      })
+  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -222,7 +223,7 @@ function App() {
           />
           <ImagePopup
             card={selectedCard}
-            isOpen={isCardFullPopupOpen ? 'edit-form_display-flex' : ''}
+            isOpen={isCardFullPopupOpen ? 'popup_display-flex' : ''}
             onClose={closeAllPopups}
           />
         </>
@@ -230,7 +231,7 @@ function App() {
       <InfoTooltip
         isSuccess={isSuccess}
         onClose={closeAllPopups}
-        isOpen={isInfoTooltipPopupOpen ? 'edit-form_display-flex' : ''}
+        isOpen={isInfoTooltipPopupOpen ? 'popup_display-flex' : ''}
       />
     </CurrentUserContext.Provider>
   );

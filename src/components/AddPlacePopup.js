@@ -28,7 +28,7 @@ function AddPlacePopup(props) {
       name='add'
       title='Новое место'
       buttonCaption='Создать'
-      isOpen={props.isOpen ? 'edit-form_display-flex' : ''}
+      isOpen={props.isOpen ? 'popup_display-flex' : ''}
       onClose={props.onClose}
     >
       <PopupChildrenAddCard

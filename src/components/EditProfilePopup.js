@@ -35,7 +35,7 @@ function EditProfilePopup(props) {
       name='redact'
       title='Редактировать профиль'
       buttonCaption='Сохранить'
-      isOpen={props.isOpen ? 'edit-form_display-flex' : ''}
+      isOpen={props.isOpen ? 'popup_display-flex' : ''}
       onClose={props.onClose}
       onSubmit={handleSubmitForm}
     >

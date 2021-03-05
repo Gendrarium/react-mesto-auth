@@ -18,7 +18,7 @@ function EditAvatarPopup(props) {
       name='avatar-edit'
       title='Обновить аватар'
       buttonCaption='Сохранить'
-      isOpen={props.isOpen ? 'edit-form_display-flex' : ''}
+      isOpen={props.isOpen ? 'popup_display-flex' : ''}
       onClose={props.onClose}
       onSubmit={handleSubmitForm}
     >
