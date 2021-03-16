@@ -69,8 +69,9 @@ function App() {
     const likeOrDis = !isLiked ? api.likeCard(card._id) : api.dislikeCard(card._id);
     likeOrDis
       .then((newCard) => {
-        const newCards = cards.map((c) => c._id === card._id ? newCard : c);
-        setCards(newCards);
+        setCards((state) => {
+          return state.map((c) => c._id === card._id ? newCard : c)
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -80,8 +81,9 @@ function App() {
   function handleCardDelete(card) {
     api.deleteCard(card._id)
       .then(() => {
-        const newCards = cards.filter((c) => !(c._id === card._id));
-        setCards(newCards);
+        setCards((state) => {
+          return state.filter((c) => !(c._id === card._id))
+        });
       })
       .catch((err) => {
         console.log(err);
