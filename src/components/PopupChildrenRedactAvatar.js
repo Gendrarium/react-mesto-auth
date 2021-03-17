@@ -1,17 +1,22 @@
-function PopupChildrenRedactAvatar(props) {
+function PopupChildrenRedactAvatar({
+  values,
+  onChange,
+  errors,
+}) {
 
   return (
     <>
       <input
         className="popup__input popup__input_content_name"
-        ref={props.inputRef}
+        value={values.avatar}
+        onChange={onChange}
         id="avatar-url"
         name="avatar"
         type="url"
         placeholder="Ссылка на аватар"
         required
       />
-      <span id="avatar-url-error" className="popup__error"></span>
+      <span id="avatar-url-error" className="popup__error">{errors.avatar}</span>
     </>
   );
 }

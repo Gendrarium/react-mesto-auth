@@ -1,16 +1,24 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
 import PopupChildrenRedactAvatar from './PopupChildrenRedactAvatar';
+import { useFormWithValidation } from '../hooks/useForm';
 
-function EditAvatarPopup(props) {
-  const inputRef = React.useRef();
+function EditAvatarPopup({
+  isOpen,
+  onUpdateAvatar,
+  onClose
+}) {
+
+  const { values, errors, isValid, handleChange, resetForm } = useFormWithValidation();
+
+  React.useEffect(() => {
+    resetForm({avatar: ''});
+  }, [isOpen, resetForm]);
 
   function handleSubmitForm(e) {
     e.preventDefault();
 
-    props.onUpdateAvatar({
-      avatar: inputRef.current.value
-    });
+    onUpdateAvatar(values);
   }
 
   return (
@@ -18,11 +26,16 @@ function EditAvatarPopup(props) {
       name='avatar-edit'
       title='Обновить аватар'
       buttonCaption='Сохранить'
-      isOpen={props.isOpen ? 'popup_display-flex' : ''}
-      onClose={props.onClose}
+      isOpen={isOpen ? 'popup_display-flex' : ''}
+      onClose={onClose}
+      isValid={isValid}
       onSubmit={handleSubmitForm}
     >
-      <PopupChildrenRedactAvatar inputRef={inputRef}/>
+      <PopupChildrenRedactAvatar
+        values={values}
+        errors={errors}
+        onChange={handleChange}
+      />
     </PopupWithForm>
   );
 }

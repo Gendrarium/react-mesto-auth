@@ -1,11 +1,15 @@
-function PopupChildrenAddCard(props) {
+function PopupChildrenAddCard({
+  values,
+  errors,
+  onChange,
+}) {
 
   return (
     <>
       <input
         className="popup__input popup__input_content_name"
-        value={props.name}
-        onChange={props.onChangeName}
+        value={values.name}
+        onChange={onChange}
         id="place-name"
         name="name"
         type="text"
@@ -14,18 +18,18 @@ function PopupChildrenAddCard(props) {
         maxLength="30"
         required
       />
-      <span id="place-name-error" className="popup__error"></span>
+      <span id="place-name-error" className="popup__error">{errors.name}</span>
       <input
         className="popup__input popup__input_content_link"
-        value={props.link}
-        onChange={props.onChangeLink}
+        value={values.link}
+        onChange={onChange}
         id="user-link"
         name="link"
         type="url"
         placeholder="Ссылка на картинку"
         required
       />
-      <span id="user-link-error" className="popup__error"></span>
+      <span id="user-link-error" className="popup__error">{errors.link}</span>
     </>
   );
 }

@@ -2,32 +2,28 @@ import React from 'react';
 import PopupWithForm from './PopupWithForm';
 import PopupChildrenRedactProfile from './PopupChildrenRedactProfile';
 import CurrentUserContext from '../contexts/CurrentUserContext';
+import { useFormWithValidation } from '../hooks/useForm';
 
-function EditProfilePopup(props) {
-  const [name, setName] = React.useState('');
-  const [description, setDescription] = React.useState('');
+function EditProfilePopup({
+  onUpdateUser,
+  isOpen,
+  onClose,
+}) {
+  const { values, errors, isValid, handleChange, resetForm } = useFormWithValidation();
+
   const currentUser = React.useContext(CurrentUserContext);
 
   React.useEffect(() => {
-    setName(currentUser.name || '');
-    setDescription(currentUser.about || '');
-  }, [currentUser]);
+    if (currentUser) {
+      resetForm(currentUser, {}, true);
+    }
+  }, [currentUser, resetForm]);
 
-  function handleNameChange(e) {
-    setName(e.target.value);
-  }
-
-  function handleDescriptionChange(e) {
-    setDescription(e.target.value);
-  }
 
   function handleSubmitForm(e) {
     e.preventDefault();
 
-    props.onUpdateUser({
-      name,
-      about: description,
-    });
+    onUpdateUser(values);
   }
 
   return (
@@ -35,15 +31,15 @@ function EditProfilePopup(props) {
       name='redact'
       title='Редактировать профиль'
       buttonCaption='Сохранить'
-      isOpen={props.isOpen ? 'popup_display-flex' : ''}
-      onClose={props.onClose}
+      isOpen={isOpen ? 'popup_display-flex' : ''}
+      isValid={isValid}
+      onClose={onClose}
       onSubmit={handleSubmitForm}
     >
       <PopupChildrenRedactProfile
-        name={name}
-        description={description}
-        onChangeName={handleNameChange}
-        onChangeDescription={handleDescriptionChange}
+        values={values}
+        errors={errors}
+        onChange={handleChange}
       />
     </PopupWithForm>
   );

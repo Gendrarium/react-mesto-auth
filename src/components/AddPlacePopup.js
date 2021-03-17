@@ -1,25 +1,23 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
 import PopupChildrenAddCard from './PopupChildrenAddCard';
+import { useFormWithValidation } from '../hooks/useForm';
 
-function AddPlacePopup(props) {
-  const [name, setName] = React.useState('');
-  const [link, setLink] = React.useState('');
+function AddPlacePopup({
+  isOpen,
+  onAddPlace,
+  onClose,
+}) {
+  const { values, errors, isValid, handleChange, resetForm } = useFormWithValidation();
 
-  function handleNameChange(e) {
-    setName(e.target.value);
-  }
-
-  function handleLinkChange(e) {
-    setLink(e.target.value);
-  }
+  React.useEffect(() => {
+    resetForm({name: '', link: ''});
+  }, [isOpen, resetForm]);
 
   function handleSubmitForm(e) {
     e.preventDefault();
 
-    props.onAddPlace({name, link});
-    setName('');
-    setLink('');
+    onAddPlace(values);
   }
 
   return (
@@ -28,14 +26,14 @@ function AddPlacePopup(props) {
       name='add'
       title='Новое место'
       buttonCaption='Создать'
-      isOpen={props.isOpen ? 'popup_display-flex' : ''}
-      onClose={props.onClose}
+      isOpen={isOpen ? 'popup_display-flex' : ''}
+      onClose={onClose}
+      isValid={isValid}
     >
       <PopupChildrenAddCard
-        name={name}
-        link={link}
-        onChangeName={handleNameChange}
-        onChangeLink={handleLinkChange}
+        values={values}
+        errors={errors}
+        onChange={handleChange}
       />
     </PopupWithForm>
   );
